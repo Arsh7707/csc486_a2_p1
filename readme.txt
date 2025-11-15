@@ -1,44 +1,60 @@
-CSC486 – Assignment 1
+Assignment 2 – Part 1
 Name: Arshjot Singh
 Student ID: V00977388
-platform_assignment1_part2_csc486
+Course: CSC 486A
 
 
-1. Scene Layout and 2D Area 
-Constructed a static 2D scene that fully utilizes both X and Y dimensions. The scene contains a main ground area, multiple elevated platforms, and decorative background element the graphiti art. The layout forms a complete platformer level that could be traversed by walking or jumping if movement were implemented.
 
-2. Vertical Platforms 
-Added two static vertical platforms positioned higher and lower than the ground level. Their height differences were chosen so that each is logically reachable by a jump or fall from the starting height. Grid snapping was used for alignment and proportional spacing.
+1. Player Character (Idle + Walk Animations)
 
-3. Horizontal Platforms 
-Created two static horizontal platforms at roughly the same height to form a reachable side-to-side jump area. The spacing allows smooth horizontal progression across the scene.
+ Idle animation implemented using spritesheet frames.
+ Walk/run animation implemented using spritesheet frames.
+ Animator Controller created with transitions between Idle ↔ Walk.
+ Speed parameter correctly controls transitions.
+ Character sprite flips left/right based on movement direction.
+ Animations play smoothly without jitter.
 
-4. Use of Tilemap, Grid, and Tile Palette
-Implemented a Grid object with multiple Tilemaps and constructed the level using the Tile Palette tools. All tiles were drawn onto the grid, aligned precisely with no pixel gaps. Each tile was generated from properly sliced spritesheets using Unity’s Sprite Editor.
+2. Player Movement Script (Left, Right, Jump)
 
-5. Tilesheets
-Used three different tilesheets for the scene:
-1) Ground  main terrain tile in green
-2) Background environment tiles such as the graphiti
-3) Foreground decorative objects and tree art tile
-All tilesheets were imported from external sources.
+ Custom PlayerMovement.cs script implemented.
+ Smooth left/right movement using Rigidbody2D physics.
+ Jump implemented using AddForce / velocity (depending on version).
+ Single-jump only when grounded (OverlapCircle ground detection).
+ Jump triggers correctly when pressing Space.
+ No wall sticking due to Physics Material (0 friction).
+ Rigidbody2D rotation frozen so player does not rotate.
 
-6. Sprite Atlas 
-Created a Sprite Atlas named MainLevelAtlas in Assets/Atlas. Packed all tilesheets and static sprites into this atlas and enabled Include in Build. Verified that all sprites in the scene reference the atlas for optimized rendering.
+3. Reasonable Character Bounds
 
-7. Foreground and Background Layers (2 Marks)
-Used at least two different Tilemaps to separate background and foreground elements. The background layer contains scenery objects such as zombie graphiti, while the foreground layer contains ground tiles and tree art white tile. Sorting Layers were used to ensure correct depth order.
+  Player collider size matches sprite correctly.  
+  GroundCheck positioned below player feet.  
+  Character visually aligns with world tilema
 
-8. Camera Clear Colour
-Changed the Main Camera’s Clear Flags from Skybox to Solid Color. Selected a light blue tone to match the natural theme of the environment.
 
-9. Quality
-All sprites imported at 32 pixels per unit. Filter Mode set to Point (No Filter) to maintain crisp pixel art. No grid gaps or blurring present. Scene layout is logical, proportional, and non-random. Colours and transparency settings appear correct.
+4. Physical World (Tilemap + Composite Collider)
 
-10. External Assets
-https://kenney.nl/assets/new-platformer-pack
-https://kenney.nl/assets/platformer-characters
+  Tilemap created for environment/platform layout.
+  Tilemap Collider 2D added for collisions.
+  Composite Collider 2D used to smooth platform surfaces.
+  Rigidbody2D (Static) on tilemap used by Composite Collider.
+  Player makes smooth contact with tilemap platforms (no bumps).
 
-11. Folder Structure
-if the scene doesn/t open up, click the main folder then click on assets, then click on scene folder then open the samplescene.unity
+5. Moving Platforms
+  One horizontal moving platform implemented.
+  One vertical moving platform implemented.
+  Platforms oscillate between two points.
+  Player remains stable on top of moving platforms.
+  Used PlatformEffector 2D In Inspector for the moving platforms
+  Platforms move at reasonable speeds for gameplay.
 
+6.Playable Demo
+ Multiple distinct regions created with tilemaps.
+Vertical and horizontal traversal required.
+World is fully traversable given movement abilities.
+Scene designed to feel like a small playable demo.
+
+
+KNOWN ISSUES (IF ANY)
+
+- GroundCheck radius sometimes requires adjustment.
+- Open the scene using the Sample Scene in Assets
