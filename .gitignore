@@ -56,7 +56,7 @@ sysinfo.txt
 [Mm]emoryCaptures/
 UserSettings/
 sysinfo.txt
-
+.DS_Store
 # Visual Studio / JetBrains
 .vs/
 .gradle/
